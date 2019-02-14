@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="注册宝网络认证概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;我也是昨晚才第一次接触到这个网络认证，去百度了一下，这个注册宝是一个免费防破解的在线软件网络验证系统。程序猿只需要把写好的软件与注册宝系统生成的安全码和安全编号进行接口对接就可以达到收费的目的了。然后登陆软件需要通过注册宝后台生成卡密，然后激活卡密才可以使用软件！然后我去网上找了一下！果真找到了类似的源码和破解思路，然后刚好又">
+<meta name="keywords" content="实战经验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注册宝网络认证破解">
+<meta property="og:url" content="http://yoursite.com/2018/10/25/注册宝网络认证破解/index.html">
+<meta property="og:site_name" content="修心的博客">
+<meta property="og:description" content="注册宝网络认证概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;我也是昨晚才第一次接触到这个网络认证，去百度了一下，这个注册宝是一个免费防破解的在线软件网络验证系统。程序猿只需要把写好的软件与注册宝系统生成的安全码和安全编号进行接口对接就可以达到收费的目的了。然后登陆软件需要通过注册宝后台生成卡密，然后激活卡密才可以使用软件！然后我去网上找了一下！果真找到了类似的源码和破解思路，然后刚好又">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyV8Xt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyVWh4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyVqAO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyVj9H.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyZ9DP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyZiE8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyZQET.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyYUEQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyY2E4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyYW59.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyYTKK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyYx2t.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iytBIH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyNs7F.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyN5nK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iy0QZ6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iy01IO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iy0rFS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/25/iyBMlj.png">
+<meta property="og:updated_time" content="2018-10-25T14:56:11.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="注册宝网络认证破解">
+<meta name="twitter:description" content="注册宝网络认证概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;我也是昨晚才第一次接触到这个网络认证，去百度了一下，这个注册宝是一个免费防破解的在线软件网络验证系统。程序猿只需要把写好的软件与注册宝系统生成的安全码和安全编号进行接口对接就可以达到收费的目的了。然后登陆软件需要通过注册宝后台生成卡密，然后激活卡密才可以使用软件！然后我去网上找了一下！果真找到了类似的源码和破解思路，然后刚好又">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/25/iyV8Xt.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/25/注册宝网络认证破解/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>注册宝网络认证破解 | 修心的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--GitHub-start-->
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!--GitHub-end-->
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">修心的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/注册宝网络认证破解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修心">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="修心的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">注册宝网络认证破解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-25 15:46:05 / 修改时间：22:56:11" itemprop="dateCreated datePublished" datetime="2018-10-25T15:46:05+08:00">2018-10-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/逆向破解/" itemprop="url" rel="index"><span itemprop="name">逆向破解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="注册宝网络认证概述"><a href="#注册宝网络认证概述" class="headerlink" title="注册宝网络认证概述"></a>注册宝网络认证概述</h2><p>&#160; &#160; &#160; &#160;我也是昨晚才第一次接触到这个网络认证，去百度了一下，这个注册宝是一个免费防破解的在线软件网络验证系统。程序猿只需要把写好的软件与注册宝系统生成的安全码和安全编号进行接口对接就可以达到收费的目的了。然后登陆软件需要通过注册宝后台生成卡密，然后激活卡密才可以使用软件！然后我去网上找了一下！果真找到了类似的源码和破解思路，然后刚好又有一哥们有的小软件是注册宝的认证系统，就搞了一波！！<br><a id="more"></a></p>
+<h2 id="注册宝网络认证破解思路"><a href="#注册宝网络认证破解思路" class="headerlink" title="注册宝网络认证破解思路"></a>注册宝网络认证破解思路</h2><h3 id="思路一、山寨注册宝网络认证系统"><a href="#思路一、山寨注册宝网络认证系统" class="headerlink" title="思路一、山寨注册宝网络认证系统"></a>思路一、山寨注册宝网络认证系统</h3><p>&#160; &#160; &#160; &#160;了解了这个网络认证的流程以后，我第一时间想到的是山寨它，对！没错，就是山寨，因为这个认证系统和软件之间是靠接口的安全码和安全编号进行对接的，那是不是可以hook一下？然后就开始了山寨之路，首先把软件丢进OD，找注册宝的安全码编号，因为注册宝的安全码编号都是<code>z10</code>或者<code>z11</code>开头，所以直接到字符串搜索这两个，看哪一个有，如图操作：<br><a href="https://imgchr.com/i/iyV8Xt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyV8Xt.png" alt="iyV8Xt.png"></a><br>&#160; &#160; &#160; &#160;嗯可以，这货很强势，居然不加壳软件，直接就出来了这个安全码和编号，就喜欢这样的作者，我们破解起来省事省心！！！然后点击跟随进去，在数据窗口中把这个安全码和编号改为我们自己的就OJ8K了！！！简单的一瞥！！！！当然，先要到注册宝后台去生成一个自己的安全码和编号，如图所示：<br><a href="https://imgchr.com/i/iyVWh4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyVWh4.png" alt="iyVWh4.png"></a><br>&#160; &#160; &#160; &#160;接下来就是把这个安全码和编号搞到软件中去的时候了，直接把作者原本的安全码和编号改为我们自己的，这样再给自己发一张永久卡，这样就可以强势的把软件山寨成为自己的了！！看图：<br><a href="https://imgchr.com/i/iyVqAO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyVqAO.png" alt="iyVqAO.png"></a><br><a href="https://imgchr.com/i/iyVj9H" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyVj9H.png" alt="iyVj9H.png"></a><br>&#160; &#160; &#160; &#160;然后这里选中安全码和编号以后空格就可以修改了，当然，修改的时候我们要修改ASCII码，不然直接修改十六进制这玩意儿口算能力没这么强势！如图所示：<br><a href="https://imgchr.com/i/iyZ9DP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyZ9DP.png" alt="iyZ9DP.png"></a><br><a href="https://imgchr.com/i/iyZiE8" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyZiE8.png" alt="iyZiE8.png"></a><br>&#160; &#160; &#160; &#160;这样直接保存软件就行了，然后去注册宝后台生成一个永久卡密，注册软件以后登录就OK！！！当然，事情不可能这么简单的，作者留了一个伏笔！！在安全码和编码验证的同时，居然还加了一个校验码，我滴天！当时我心态就炸了，问题关键是，这玩意儿我还不知道在哪儿修改！好吧好吧，简单直接的办法，爆破！！！（当然，温馨提示，如果有的软件作者没加校验码或者有其他办法可以搞定校验码，这种办法还是可以山寨的，就像改安全码和编码那样，把校验码也改为自己的就行了！）</p>
+<h3 id="思路二、爆破注册宝网络认证系统"><a href="#思路二、爆破注册宝网络认证系统" class="headerlink" title="思路二、爆破注册宝网络认证系统"></a>思路二、爆破注册宝网络认证系统</h3><p>&#160; &#160; &#160; &#160;说到爆破这玩意儿就简单了，先用虫子爬一下这个程序，看看都有些啥玩意儿！如图所示：<br><a href="https://imgchr.com/i/iyZQET" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyZQET.png" alt="iyZQET.png"></a><br>&#160; &#160; &#160; &#160;嗯，只有一个登陆事件地址，那就行，直接丢OD，跳转到登录地址这里，然后单步一步步向下走，然后经过我的多次尝试以后发现一共有四处大的跳转，想了一下，既然有安全码和编码，刚好两个认证，返回两个认证结果，刚好是四处，这四处缺一不可，直接跳转到程序退出，嗯，应该是这样，我就尝试着把这四处跳转直接nop掉了，如图所示：<br><a href="https://imgchr.com/i/iyYUEQ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyYUEQ.png" alt="iyYUEQ.png"></a><br>&#160; &#160; &#160; &#160;登录事件地址处下断，然后找到如下图所示第一处大跳转nop掉：<br><a href="https://imgchr.com/i/iyY2E4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyY2E4.png" alt="iyY2E4.png"></a><br>&#160; &#160; &#160; &#160;第二处大跳转nop掉：<br><a href="https://imgchr.com/i/iyYW59" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyYW59.png" alt="iyYW59.png"></a><br>&#160; &#160; &#160; &#160;第三处大跳转nop掉：<br><a href="https://imgchr.com/i/iyYTKK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyYTKK.png" alt="iyYTKK.png"></a><br>&#160; &#160; &#160; &#160;第四处大跳转nop掉（其实第三处这里就可以看出来，这个跳转跳过了登录成功）：<br><a href="https://imgchr.com/i/iyYx2t" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyYx2t.png" alt="iyYx2t.png"></a><br>&#160; &#160; &#160; &#160;嗯，干掉这四处应该就可以成功了。登录试试，结果这货作者软件不咋地，还留了后手，登录就提示“密码文件被修改！请联系客服”！点击“确定”以后，软件倒是进去了，但是又提示“验证失败，请联系客服”如图所示：<br><a href="https://imgchr.com/i/iytBIH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iytBIH.png" alt="iytBIH.png"></a><br><a href="https://imgchr.com/i/iyNs7F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyNs7F.png" alt="iyNs7F.png"></a><br>&#160; &#160; &#160; &#160;我去！！当时心态就炸了，难道这软件还有啥特牛叉的功能？好吧，你开心就好，然后又跑到字符串去搜索这个提示信息，因为没加壳嘛，简单就用简单办法来搞，果然这个提示信息也是没加密的，那就省事了，跟进去直接跳过就行，如图所示：<br><a href="https://imgchr.com/i/iyN5nK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyN5nK.png" alt="iyN5nK.png"></a><br>&#160; &#160; &#160; &#160;嗯，这货还留了不止一个小暗桩，而是三个，一个“密码文件被删除！请联系客服”，另一个是“密码文件被修改！请联系客服”，还有一个就是“验证失败，请联系客服”！！居然都在一起，那就行了，没事，直接干掉，直接跟进去找到这三个提示信息上面的跳转，直接jmp过去就行，如图：<br><a href="https://imgchr.com/i/iy0QZ6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iy0QZ6.png" alt="iy0QZ6.png"></a><br><a href="https://imgchr.com/i/iy01IO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iy01IO.png" alt="iy01IO.png"></a><br><a href="https://imgchr.com/i/iy0rFS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iy0rFS.png" alt="iy0rFS.png"></a><br>&#160; &#160; &#160; &#160;这里改完软件就算是完全被爆破完成了，结果一看到软件里面的功能时，心态相当炸裂啊！这都嘛玩意儿？搞这半天，裤子都脱了，你就给我看这个？<br><a href="https://imgchr.com/i/iyBMlj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/25/iyBMlj.png" alt="iyBMlj.png"></a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&#160; &#160; &#160; &#160;最近一直没事就在破解软件玩，也是一种学习进步的办法！但是也有弊端的出现，接触的太多都是易语言，所以对于其他的语言就相对较弱，甚至无从下手，甚至于遇到一个软件就按部就班的来，连最基本的分析都忘记了！拿到一个软件，别去管什么特征码，什么这样法那样法！单步分析最实际，先搞懂作者套路，破解起来自然就省事！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/实战经验/" rel="tag"># 实战经验</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/18/记一次荒野辅助简单破解/" rel="next" title="记一次荒野辅助简单破解">
+                <i class="fa fa-chevron-left"></i> 记一次荒野辅助简单破解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/05/飘零2-2山寨/" rel="prev" title="飘零2.2山寨">
+                飘零2.2山寨 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">修心</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册宝网络认证概述"><span class="nav-number">1.</span> <span class="nav-text">注册宝网络认证概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册宝网络认证破解思路"><span class="nav-number">2.</span> <span class="nav-text">注册宝网络认证破解思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路一、山寨注册宝网络认证系统"><span class="nav-number">2.1.</span> <span class="nav-text">思路一、山寨注册宝网络认证系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路二、爆破注册宝网络认证系统"><span class="nav-number">2.2.</span> <span class="nav-text">思路二、爆破注册宝网络认证系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">修心</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--nest动态皮肤代码-start-->
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  <!--nest动态皮肤代码-end-->
+</body>
+</html>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>

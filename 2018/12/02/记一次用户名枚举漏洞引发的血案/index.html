@@ -108,27 +108,32 @@
 
 
 
-  <meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;各位朋友好，我是修心，这是我第一次玩个人博客，也是折腾得够呛的一次，昨晚干了一个通宵，今天本来说去陪陪女朋友的也失约了！！还好的是，我女朋友善解人意！！！咳咳，皮一下皮一下！！不要在意这些细节！">
-<meta name="keywords" content="说明感言">
+  <meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本次渗透测试仅仅是因工作需要随便搞了一下，没有深入对system进行提权等操作，只是说一下自己找漏洞的一些思路而已！大概的步骤就是确定目标、收集信息、测试漏洞情况、验证漏洞！">
+<meta name="keywords" content="实战经验">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一个博客">
-<meta property="og:url" content="http://yoursite.com/2018/09/16/我的第一个博客/index.html">
+<meta property="og:title" content="记一次用户名枚举漏洞引发的血案">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/记一次用户名枚举漏洞引发的血案/index.html">
 <meta property="og:site_name" content="修心的博客">
-<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;各位朋友好，我是修心，这是我第一次玩个人博客，也是折腾得够呛的一次，昨晚干了一个通宵，今天本来说去陪陪女朋友的也失约了！！还好的是，我女朋友善解人意！！！咳咳，皮一下皮一下！！不要在意这些细节！">
+<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本次渗透测试仅仅是因工作需要随便搞了一下，没有深入对system进行提权等操作，只是说一下自己找漏洞的一些思路而已！大概的步骤就是确定目标、收集信息、测试漏洞情况、验证漏洞！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.imgur.com/Mx0NEz7.jpg">
-<meta property="og:updated_time" content="2018-10-25T17:15:15.480Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/02/Fuj0wn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/02/FujsYV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/02/FujHSO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/02/Fuvpff.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/02/Fuv3nJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/02/FuvNh6.png">
+<meta property="og:updated_time" content="2018-12-02T12:20:43.353Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的第一个博客">
-<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;各位朋友好，我是修心，这是我第一次玩个人博客，也是折腾得够呛的一次，昨晚干了一个通宵，今天本来说去陪陪女朋友的也失约了！！还好的是，我女朋友善解人意！！！咳咳，皮一下皮一下！！不要在意这些细节！">
-<meta name="twitter:image" content="https://i.imgur.com/Mx0NEz7.jpg">
+<meta name="twitter:title" content="记一次用户名枚举漏洞引发的血案">
+<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本次渗透测试仅仅是因工作需要随便搞了一下，没有深入对system进行提权等操作，只是说一下自己找漏洞的一些思路而已！大概的步骤就是确定目标、收集信息、测试漏洞情况、验证漏洞！">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/12/02/Fuj0wn.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/16/我的第一个博客/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/02/记一次用户名枚举漏洞引发的血案/">
 
 
 
@@ -138,7 +143,7 @@
   };
 </script>
 
-  <title>我的第一个博客 | 修心的博客</title>
+  <title>记一次用户名枚举漏洞引发的血案 | 修心的博客</title>
   
 
 
@@ -318,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/我的第一个博客/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/记一次用户名枚举漏洞引发的血案/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="修心">
@@ -335,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">我的第一个博客
+          <h1 class="post-title" itemprop="name headline">记一次用户名枚举漏洞引发的血案
               
             
           </h1>
@@ -360,24 +365,12 @@
                 
               
 
-              <time title="创建时间：2018-09-16 14:39:03" itemprop="dateCreated datePublished" datetime="2018-09-16T14:39:03+08:00">2018-09-16</time>
+              <time title="创建时间：2018-12-02 05:50:37 / 修改时间：20:20:43" itemprop="dateCreated datePublished" datetime="2018-12-02T05:50:37+08:00">2018-12-02</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-26 01:15:15" itemprop="dateModified" datetime="2018-10-26T01:15:15+08:00">2018-10-26</time>
               
             
           </span>
@@ -394,7 +387,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/说明感言/" itemprop="url" rel="index"><span itemprop="name">说明感言</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/实战渗透/" itemprop="url" rel="index"><span itemprop="name">实战渗透</span></a></span>
 
                 
                 
@@ -428,16 +421,12 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;各位朋友好，我是修心，这是我第一次玩个人博客，也是折腾得够呛的一次，昨晚干了一个通宵，今天本来说去陪陪女朋友的也失约了！！还好的是，我女朋友善解人意！！！<br><img src="https://i.imgur.com/Mx0NEz7.jpg" alt=""><br>咳咳，皮一下皮一下！！不要在意这些细节！<br><a id="more"></a></p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>&#160; &#160; &#160; &#160;最近在安全圈子里面，跟各位大佬交流沟通以后，某位大佬就叫我把个人笔记这些分享一下，我想了一下，鄙人没有写博客的习惯，笔记都是自己做的doc文档，这样很不方便分享，所以我就连夜赶了一个个人博客出来，经过一夜的各种折腾，现在基本上玩得转了，更新一下博客还是没问题滴！以后我会不定期更新一些个人工作经验、职场心得、学习心得之类的东西！！</p>
-<h2 id="分享的内容"><a href="#分享的内容" class="headerlink" title="分享的内容"></a>分享的内容</h2><ul>
-<li>个人工作经验<br>&#160; &#160; &#160; &#160;本人攻城狮出身，说的简单点，搬砖的，说多了都是泪！也没啥好说的，就是参与和带的项目比较多，项目中的一些坑还算比较了解！</li>
-<li>职场心得<br>&#160; &#160; &#160; &#160;职场心得这块儿呢，老实说，我大学毕业三年，每年薪资待遇都是成倍的在翻，很多人都说我这个是在自傲啊，或者炫耀啥的，但是真不是！这三年以来，其中付出了多少，也只有我自己才最清楚。所以，这方面呢，以后小小的提出一丢丢微薄的经验吧！</li>
-<li>学习心得<br>&#160; &#160; &#160; &#160;这一块的话，可能手里干货还是算是比较多吧，每天都有自己学习工作计划，这也是这三年来慢慢养成的习惯，人笨，又想要更好的待遇，那就多花时间呗！<blockquote>
-<p>谢谢大家关注</p>
-</blockquote>
-</li>
-</ul>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;本次渗透测试仅仅是因工作需要随便搞了一下，没有深入对system进行提权等操作，只是说一下自己找漏洞的一些思路而已！大概的步骤就是确定目标、收集信息、测试漏洞情况、验证漏洞！<br><a id="more"></a></p>
+<h2 id="确定目标"><a href="#确定目标" class="headerlink" title="确定目标"></a>确定目标</h2><p>&#160; &#160; &#160; &#160;这个目标嘛，随便百度找的，因为是工作任务，就没有限定死哪个具体的目标，只是限制了公检法不动就行，这些特殊单位搞了估计就是“银手镯”一对了！因为我这边的任务要求仅限于重庆范围内，而且吧，学校医院这些基本被我们轮了几遍了，我就果断的对准公司企业下手！因为这玩意儿真的非常耗时，所以我就直接用前阵子团队里面小伙伴写的一个脚本跑的，原理有点类似于御剑，直接找有特殊路径或者源代码或者网站备份的RAR打包文件！搜索了一波后再一个个去分析看看！所以这个确定目标的话，我这里基本就是一大堆！</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>&#160; &#160; &#160; &#160;对于前面工具里面跑出来的一堆URL进行分析以后，发现很多其实应该都有注入的，但是基本都加了waf/ips等安全设备。绕过费时，每周又必须要提交两个漏洞，这种我基本都是放弃的！一般在这一步的时候，我都是去看看网站后台，然后找一下注入，遇见框框丢sqlmap跑一波，然后看看参数，审计一下参数上面有没有问题。再然后就是看看web是否调用了其他接口，一般接口上面问题最多！简单来说接口有点类似于三不管地带！因为很多时候，程序员在开发的时候，接口都是直接调用，很少注意到接口这里给它过滤。对于提供接口的一方来说，觉得这个我这边都是安全的，给你一个接口而已，肯定也是安全的，只要你那边安全了就没问题。但是往往没想到在web这边调用接口的时候，如果不做处理，一旦拦截到接口地址，所有请求对于接口提供方来说，基本都是合理合法的，请求来自web应用这边。所以，往往这里是一个重灾区！最后如果再收集不到啥有用的信息那就参考圈子<strong>阿皮</strong>的思路，挖掘子域名，到钟馗查和爱站看看其他信息。一般我很少这样搞！因为太费时，而且不是针对性的去搞。</p>
+<h2 id="测试漏洞情况"><a href="#测试漏洞情况" class="headerlink" title="测试漏洞情况"></a>测试漏洞情况</h2><p>&#160; &#160; &#160; &#160;我这里找到了一大堆以后，其实在信息收集这里我就发现了问题，就是这是一家建站公司，他们建的所有网站居然都是由他们提供后台链接，不同账号登陆各自网站的后台。但是这里有个问题，那就是他这个后台有一个忘记密码可以找回密码的功能，而且吧，在找回密码这里，如果你输入用户名出错，直接就提示用户不存在，这也就导致了可以枚举用户名，如图所示：<br><a href="https://imgchr.com/i/Fuj0wn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/12/02/Fuj0wn.png" alt="Fuj0wn.png"></a><br><a href="https://imgchr.com/i/FujsYV" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/12/02/FujsYV.png" alt="FujsYV.png"></a></p>
+<h2 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><p>&#160; &#160; &#160; &#160;这个就很皮了，既然这样，我就果断拿出我的小本本，直接跑一波试试！如图所示：<br><a href="https://imgchr.com/i/FujHSO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/12/02/FujHSO.png" alt="FujHSO.png"></a><br><a href="https://imgchr.com/i/Fuvpff" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/12/02/Fuvpff.png" alt="Fuvpff.png"></a><br>&#160; &#160; &#160; &#160;存在的用户就直接发送邮件成功，不存在的就直接给跳转到提示页面，提示该用户并不存在，多耿直！！既然存在用户名枚举，那行，我就一锅端，全部给他枚举出来了。但是，枚举出来没密码，也没什么用啊？？？这还不简单？既然枚举出来了，那就直接登陆嘛，这么多用户名，还怕没有个一个两个弱口令？直接在登陆的地方，输入密码<code>123456</code>国际通用密码，然后继续去跑，总有那么一两个二愣子的！果不其然，跑出来一堆弱口令用户！如图所示：<br><a href="https://imgchr.com/i/Fuv3nJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/12/02/Fuv3nJ.png" alt="Fuv3nJ.png"></a><br><a href="https://imgchr.com/i/FuvNh6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/12/02/FuvNh6.png" alt="FuvNh6.png"></a><br>&#160; &#160; &#160; &#160;最后我也看了一下，其实还可以深入搞下去的，但是这里由于是工作任务，我就没继续搞下去了，哎！没法，限制较多，搞下去就是“银手镯”了，虽然是合法身份，但是还是有条条款款限制的！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&#160; &#160; &#160; &#160;其实渗透的姿势很多，我自己知道都有很多，前阵子我就陷入了一个盲区，主要是找漏洞的思路比较少！说过去说过来，还是搞的少了，最近每天加班到凌晨。天天做渗透，主要还是针对内网环境的办公系统，这玩意儿还不能够去网上查询有关信息，所以慢慢的思路也就多了起来！比如通过app着手！比如通过web接口等等！多搞思路也就出来了！</p>
 
       
     </div>
@@ -458,7 +447,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/说明感言/" rel="tag"># 说明感言</a>
+            <a href="/tags/实战经验/" rel="tag"># 实战经验</a>
           
         </div>
       
@@ -471,15 +460,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/09/游戏外挂制作原理/" rel="next" title="游戏外挂制作原理">
+                <i class="fa fa-chevron-left"></i> 游戏外挂制作原理
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/17/push法详解/" rel="prev" title="push法详解">
-                push法详解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -629,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分享的内容"><span class="nav-number">3.</span> <span class="nav-text">分享的内容</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确定目标"><span class="nav-number">2.</span> <span class="nav-text">确定目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息收集"><span class="nav-number">3.</span> <span class="nav-text">信息收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试漏洞情况"><span class="nav-number">4.</span> <span class="nav-text">测试漏洞情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞验证"><span class="nav-number">5.</span> <span class="nav-text">漏洞验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

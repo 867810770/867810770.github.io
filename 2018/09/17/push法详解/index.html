@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="push法概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;所谓的push法，就是使用push命令，查找易语言窗体或者按钮。主要是针对易语言，同样是针对市面上常见的游戏外挂，现在市面的游戏外挂，普遍是易语言写的。本次要讲的就是push 25命令，查找易语言窗体事件！">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="push法详解">
+<meta property="og:url" content="http://yoursite.com/2018/09/17/push法详解/index.html">
+<meta property="og:site_name" content="修心的博客">
+<meta property="og:description" content="push法概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;所谓的push法，就是使用push命令，查找易语言窗体或者按钮。主要是针对易语言，同样是针对市面上常见的游戏外挂，现在市面的游戏外挂，普遍是易语言写的。本次要讲的就是push 25命令，查找易语言窗体事件！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZmwvj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZmDrn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZneLn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZnnZq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZnsQH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZKzL9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMudI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMNes.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMaoq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMgm9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZM2wR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMRT1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMISO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZM7OH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZMq0A.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZQp6g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZQ9XQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZ3H8P.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZ8ZVJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZ8K8x.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZ8TZ4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/09/17/iZ8Ho9.png">
+<meta property="og:updated_time" content="2018-10-25T07:41:03.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="push法详解">
+<meta name="twitter:description" content="push法概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;所谓的push法，就是使用push命令，查找易语言窗体或者按钮。主要是针对易语言，同样是针对市面上常见的游戏外挂，现在市面的游戏外挂，普遍是易语言写的。本次要讲的就是push 25命令，查找易语言窗体事件！">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/09/17/iZmwvj.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/17/push法详解/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>push法详解 | 修心的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--GitHub-start-->
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!--GitHub-end-->
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">修心的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/push法详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修心">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="修心的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">push法详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-17 10:35:21" itemprop="dateCreated datePublished" datetime="2018-09-17T10:35:21+08:00">2018-09-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-25 15:41:03" itemprop="dateModified" datetime="2018-10-25T15:41:03+08:00">2018-10-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/逆向破解/" itemprop="url" rel="index"><span itemprop="name">逆向破解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="push法概述"><a href="#push法概述" class="headerlink" title="push法概述"></a>push法概述</h2><p>&#160; &#160; &#160; &#160;所谓的push法，就是使用push命令，查找易语言窗体或者按钮。主要是针对易语言，同样是针对市面上常见的游戏外挂，现在市面的游戏外挂，普遍是易语言写的。本次要讲的就是push 25命令，查找易语言窗体事件！<br><a id="more"></a></p>
+<h2 id="push法具体例子一"><a href="#push法具体例子一" class="headerlink" title="push法具体例子一"></a>push法具体例子一</h2><p>&#160; &#160; &#160; &#160;如下图所示自写小程序：<br><a href="https://imgchr.com/i/iZmwvj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZmwvj.png" alt="iZmwvj.png"></a><br>&#160; &#160; &#160; &#160;载入OD分析一波，如图所示：<br><a href="https://imgchr.com/i/iZmDrn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZmDrn.png" alt="iZmDrn.png"></a><br>&#160; &#160; &#160; &#160;直接Ctrl+B，搜索二进制字符串FF 25窗体事件，来到窗体，如图所示：<br><a href="https://imgchr.com/i/iZneLn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZneLn.png" alt="iZneLn.png"></a><br><a href="https://imgchr.com/i/iZnnZq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZnnZq.png" alt="iZnnZq.png"></a><br>&#160; &#160; &#160; &#160;如上第二幅图所示，程序来到窗体事件，因为所有的易语言窗体，都需要通过一个jmp来实现跳转，所以，程序直接来到了jmp处！往上拉一点可以看见主窗体和窗口1窗体，如图下图所示（注意：并不是所有的窗体代码都能够直接这样看见，比如加壳的程序，或者很多窗口的程序，有可能jmp和窗口1的代码就相距很远，这里仅仅是个小程序，要根据实际情况来分析！）：<br><a href="https://imgchr.com/i/iZnsQH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZnsQH.png" alt="iZnsQH.png"></a><br>&#160; &#160; &#160; &#160;如上图所示，选中的部分就是窗口1的代码，下面箭头指的就是主窗口的push，上面箭头指的就是窗口1的push值！这里可以直接改主窗口的push值，让程序打开就是窗口1，具体操作详见《世恒破解教程一期》。通过上面截图代码可以看见窗口1最后有一个call，其实这个call就是把前面的代码压栈到里面，然后弹出窗口1，在这里下断点，运行程序，点击“登录”，如图所示：<br><a href="https://imgchr.com/i/iZKzL9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZKzL9.png" alt="iZKzL9.png"></a><br>&#160; &#160; &#160; &#160;如上图所示，程序点击“登录”后在这个call被断了下来，查看反汇编窗口中的代码和堆栈窗口（右下角为堆栈窗口）代码，发现一模一样，但是堆栈窗口代码顺序和反汇编窗口的代码顺序刚好相反，这是因为栈空间需要满足先进后出，先出后进的原则，也就是说，最先入栈的代码在最下面，所以刚好相反。关于汇编知识，个人推荐小甲鱼的汇编，他就详细的把王爽的汇编解释了一下！不过这不是这里的重点，继续分析！<br>&#160; &#160; &#160; &#160;到了这里以后，F7进call看一下，发现程序直接就到了jmp这里，如图所示：<br><a href="https://imgchr.com/i/iZMudI" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMudI.png" alt="iZMudI.png"></a><br>&#160; &#160; &#160; &#160;如上图所示，这是因为易语言程序，不管前面代码怎么调用，都会经过这几个jmp，所以，易语言的程序，关键点就在这些jmp上面，如果前面的代码被V（VMP加壳）了，那就可以从这里下手，下面就演示一下给这个程序加壳！把窗口1的代码给V掉，如图所示：<br><a href="https://imgchr.com/i/iZMNes" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMNes.png" alt="iZMNes.png"></a><br><a href="https://imgchr.com/i/iZMaoq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMaoq.png" alt="iZMaoq.png"></a><br><a href="https://imgchr.com/i/iZMgm9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMgm9.png" alt="iZMgm9.png"></a><br><a href="https://imgchr.com/i/iZM2wR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZM2wR.png" alt="iZM2wR.png"></a><br><a href="https://imgchr.com/i/iZMRT1" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMRT1.png" alt="iZMRT1.png"></a><br>&#160; &#160; &#160; &#160;如上几幅图所示，就是给窗口1代码加壳，因为这里不需要特别麻烦，仅仅只是个演示，所以仅仅只是把窗口1虚拟化掉了，其他比如变异这些功能都没有加上，详细加壳怎么加，可以执行百度，加好壳以后，载入OD，看看程序变化，如图：<br><a href="https://imgchr.com/i/iZMISO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMISO.png" alt="iZMISO.png"></a><br>&#160; &#160; &#160; &#160;如图所示，可以看见窗口1的代码被整个虚拟化了，根本看不出来原本的样子！但是下面的主窗口部分还是没有变化，前面说了，易语言的关键点在于跳转jmp，所以，直接到jmp哪儿去下断，但是这里有四个jmp，在不知道具体是哪个jmp的情况下，就都下断，看看哪个jmp在点击登录的时候断下来了那么它就是关键的jmp，也称为关键跳！如图所示：<br><a href="https://imgchr.com/i/iZM7OH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZM7OH.png" alt="iZM7OH.png"></a><br><a href="https://imgchr.com/i/iZMq0A" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZMq0A.png" alt="iZMq0A.png"></a><br>&#160; &#160; &#160; &#160;如上几幅图所示，第四个jmp停止了断了下来，然后看右下角堆栈窗口可以看出来，堆栈里面的代码，还是原本没有被V的代码，那就可以尝试着直接修改主窗体的push值，直接打开程序就来到窗口1，如图所示：<br><a href="https://imgchr.com/i/iZQp6g" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZQp6g.png" alt="iZQp6g.png"></a><br><a href="https://imgchr.com/i/iZQ9XQ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZQ9XQ.png" alt="iZQ9XQ.png"></a><br>&#160; &#160; &#160; &#160;如图所示，当把主窗体的push值改为窗口1的值以后，程序直接进入窗口1了！！</p>
+<h2 id="push法具体例子二——还原被V代码"><a href="#push法具体例子二——还原被V代码" class="headerlink" title="push法具体例子二——还原被V代码"></a>push法具体例子二——还原被V代码</h2><p>&#160; &#160; &#160; &#160;上面例子一讲述了push法找到关键jmp，然后可以通过修改主窗体的push值，直接进入程序，下面来看一下，程序被V以后还原，如图所示自写小软件：<br><a href="https://imgchr.com/i/iZ3H8P" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZ3H8P.png" alt="iZ3H8P.png"></a><br>&#160; &#160; &#160; &#160;如图所示，这个弹窗软件由一个变为两个窗口后，V掉一个窗口，把窗口2V掉，然后还原，先V掉窗口2代码，载入OD（具体V掉过程前面已经大概演示，就不做截图演示了），如图所示：<br><a href="https://imgchr.com/i/iZ8ZVJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZ8ZVJ.png" alt="iZ8ZVJ.png"></a><br>&#160; &#160; &#160; &#160;如图所示，窗口2代码被V以后完全看不出来原本的代码，按照案例一的办法直接在jmp下断，然后运行，点击登录2，断下来以后看堆栈窗口，如图所示：<br><a href="https://imgchr.com/i/iZ8K8x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZ8K8x.png" alt="iZ8K8x.png"></a><br>&#160; &#160; &#160; &#160;如图所示，堆栈窗口的代码就是原本没有被V掉的正常代码，刚好窗口1的代码也能够正常显示，就可以尝试根据窗口1的代码把窗口2的代码还原，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">push ebp</span><br><span class="line">mov ebp,esp</span><br><span class="line">push 0x80000002</span><br><span class="line">push 0x0</span><br><span class="line">push 0x1</span><br><span class="line">push 0x0</span><br><span class="line">push 0x0</span><br><span class="line">push 0x0</span><br><span class="line">push 0x10001</span><br><span class="line">push 0x601000A</span><br><span class="line">push 0x5201000B</span><br><span class="line">push 0x3</span><br><span class="line">mov ebx,2个窗口_.004010D0</span><br><span class="line">call 2个窗口_.004010C5</span><br><span class="line">add esp,0x28</span><br><span class="line">mov esp,ebp</span><br><span class="line">pop ebp</span><br><span class="line">retn</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;如上代码中，<code>push ebp</code> <code>mov ebp,esp</code>为创建子程序代码，也是窗口2的开始代码，最后的<code>mov esp,ebp</code> <code>pop ebp</code> <code>retn</code>为创建子程序结束代码，也是窗口2的结束代码。窗口2和窗口1不同之处就在于代码第十行和第十一行，窗口1为<code>push 0x6010005</code> <code>push 0x52010006</code>所以这里根据堆栈窗口的值，改一下，其他全部一样的，包括<code>call</code>里面的值，直接复制粘贴就行，然后把多余的代码直接<code>Nop</code>填充掉即可，最后如下图所示：<br><a href="https://imgchr.com/i/iZ8TZ4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZ8TZ4.png" alt="iZ8TZ4.png"></a><br>&#160; &#160; &#160; &#160;最后保存修改的代码，执行一下，看看会不会报错，如图：<br><a href="https://imgchr.com/i/iZ8Ho9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/09/17/iZ8Ho9.png" alt="iZ8Ho9.png"></a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&#160; &#160; &#160; &#160;针对易语言而言，不管代码怎么改变，jmp关键跳转不会变，除非把jmp给V掉，不然可以利用这一点，对登录进行破解。同时，jmp上面一点肯定是主窗体的<code>push</code>这一点是不会改变的！也算是一个小的特征。同时，也可以利用关键jmp对已经被V的部分代码进行还原。这需要根据实际情况来看，演示的代码不大，就几句话，要是多了情况另说，程序大了，jmp也可能会很多！实际情况实际轮！</p>
+<blockquote>
+<p>谢谢大家关注</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/16/我的第一个博客/" rel="next" title="我的第一个博客">
+                <i class="fa fa-chevron-left"></i> 我的第一个博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/20/飘零2-7-wmv/" rel="prev" title="飘零2.7.wmv">
+                飘零2.7.wmv <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">修心</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#push法概述"><span class="nav-number">1.</span> <span class="nav-text">push法概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push法具体例子一"><span class="nav-number">2.</span> <span class="nav-text">push法具体例子一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push法具体例子二——还原被V代码"><span class="nav-number">3.</span> <span class="nav-text">push法具体例子二——还原被V代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">修心</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--nest动态皮肤代码-start-->
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  <!--nest动态皮肤代码-end-->
+</body>
+</html>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>

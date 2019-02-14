@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="飘零2.8概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;飘零2.8其实和前面的2.7没有多大的差别，基本的认证方式和特点都一样。所以，破解的思路也是一模一样的，这里2.8主要讲解在破解飘零网络认证的软件中会遇到的问题，简单来说就是一个飘零网络认证破解问题汇总。">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="飘零2.8网络认证破解">
+<meta property="og:url" content="http://yoursite.com/2018/10/08/飘零2-8网络认证破解/index.html">
+<meta property="og:site_name" content="修心的博客">
+<meta property="og:description" content="飘零2.8概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;飘零2.8其实和前面的2.7没有多大的差别，基本的认证方式和特点都一样。所以，破解的思路也是一模一样的，这里2.8主要讲解在破解飘零网络认证的软件中会遇到的问题，简单来说就是一个飘零网络认证破解问题汇总。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJFbpn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJFOXV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJkPpR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJkuhd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJk1jP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJkJHS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJAIRs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJVw3d.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJnLe1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJnOdx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJlf8f.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGCZQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGGz6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGYQK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGNLD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJ8ZHH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJ8GDg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGTS0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGXTJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJGzf1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJJATH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJJoAH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJJ74A.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJJRc6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJJhnO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJYU5d.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJY02t.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJYcVg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJYfGn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/08/iJYXGR.png">
+<meta property="og:updated_time" content="2018-10-25T07:42:44.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="飘零2.8网络认证破解">
+<meta name="twitter:description" content="飘零2.8概述&amp;#160; &amp;#160; &amp;#160; &amp;#160;飘零2.8其实和前面的2.7没有多大的差别，基本的认证方式和特点都一样。所以，破解的思路也是一模一样的，这里2.8主要讲解在破解飘零网络认证的软件中会遇到的问题，简单来说就是一个飘零网络认证破解问题汇总。">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/08/iJFbpn.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/08/飘零2-8网络认证破解/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>飘零2.8网络认证破解 | 修心的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--GitHub-start-->
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!--GitHub-end-->
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">修心的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/08/飘零2-8网络认证破解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修心">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="修心的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">飘零2.8网络认证破解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-08 10:13:08" itemprop="dateCreated datePublished" datetime="2018-10-08T10:13:08+08:00">2018-10-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-25 15:42:44" itemprop="dateModified" datetime="2018-10-25T15:42:44+08:00">2018-10-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/逆向破解/" itemprop="url" rel="index"><span itemprop="name">逆向破解</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="飘零2-8概述"><a href="#飘零2-8概述" class="headerlink" title="飘零2.8概述"></a>飘零2.8概述</h2><p>&#160; &#160; &#160; &#160;飘零2.8其实和前面的2.7没有多大的差别，基本的认证方式和特点都一样。所以，破解的思路也是一模一样的，这里2.8主要讲解在破解飘零网络认证的软件中会遇到的问题，简单来说就是一个飘零网络认证破解问题汇总。<br><a id="more"></a></p>
+<h2 id="飘零2-8破解问题汇总"><a href="#飘零2-8破解问题汇总" class="headerlink" title="飘零2.8破解问题汇总"></a>飘零2.8破解问题汇总</h2><h3 id="问题一：时钟特征"><a href="#问题一：时钟特征" class="headerlink" title="问题一：时钟特征"></a>问题一：时钟特征</h3><p>&#160; &#160; &#160; &#160;时钟检测其实很常见，一般在易语言中很容易看出来了它的特征，就是在易语言“按钮事件”这里下一个断点，然后F9运行程序后，程序会无限制的断在这里，而不会像去掉时钟那样，点击了“登录”以后才断在按钮事件这里，这就是时钟检测特征，如图所示：<br><a href="https://imgchr.com/i/iJFbpn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJFbpn.png" alt="iJFbpn.png"></a></p>
+<h3 id="问题二：去掉账号密码为空检测"><a href="#问题二：去掉账号密码为空检测" class="headerlink" title="问题二：去掉账号密码为空检测"></a>问题二：去掉账号密码为空检测</h3><p>&#160; &#160; &#160; &#160;和破解2.7思路一样，去掉账号密码为空的检测，直接<code>jmp</code>过去就行，如图所示：<br><a href="https://imgchr.com/i/iJFOXV" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJFOXV.png" alt="iJFOXV.png"></a><br><a href="https://imgchr.com/i/iJkPpR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJkPpR.png" alt="iJkPpR.png"></a></p>
+<h3 id="问题三：程序跑丢找回"><a href="#问题三：程序跑丢找回" class="headerlink" title="问题三：程序跑丢找回"></a>问题三：程序跑丢找回</h3><p>&#160; &#160; &#160; &#160;什么是程序跑丢呢？也就是说，当程序在某处被断下来F8单步向下走的时候，到某处突然程序直接“运行”起来了，这就是跑丢了，这就需要在跑丢的那一行下面下一个断点，然后点击OD的“T”线程标志，进去激活所有线程后程序就可以跑回来了，如图所示：<br><a href="https://imgchr.com/i/iJkuhd" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJkuhd.png" alt="iJkuhd.png"></a><br><a href="https://imgchr.com/i/iJk1jP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJk1jP.png" alt="iJk1jP.png"></a><br><a href="https://imgchr.com/i/iJkJHS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJkJHS.png" alt="iJkJHS.png"></a></p>
+<h3 id="问题四：易语言下标错误"><a href="#问题四：易语言下标错误" class="headerlink" title="问题四：易语言下标错误"></a>问题四：易语言下标错误</h3><p>&#160; &#160; &#160; &#160;这个下标是易语言特有的特征，如果在破解一个程序的时候提示“数组成员引用下标超出定义范围”就肯定是一个易语言程序，这个下标错也是可以直接找到段首<code>retn</code>搞定的，2.x版本的飘零网络认证就有这个东西，在“取会员信息错误，请检查网络”的提示下面，如图所示：<br><a href="https://imgchr.com/i/iJAIRs" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJAIRs.png" alt="iJAIRs.png"></a><br><a href="https://imgchr.com/i/iJVw3d" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJVw3d.png" alt="iJVw3d.png"></a><br>&#160; &#160; &#160; &#160;如上图所示，这个错误可以直接在<code>jl</code>判断哪儿直接<code>jmp</code>跳过去，但是跳过这个了，如果还有其他地方调用也没用，最好的办法就是在易语言体中，也就是<code>401000</code>处找窗体事件，找到这个下标函数，直接干掉，如图所示：<br><a href="https://imgchr.com/i/iJnLe1" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJnLe1.png" alt="iJnLe1.png"></a><br><a href="https://imgchr.com/i/iJnOdx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJnOdx.png" alt="iJnOdx.png"></a><br>&#160; &#160; &#160; &#160;如上图所示，在几个<code>jmp</code>处回车跟进去，找到如上图二所示的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">push ebp</span><br><span class="line">mov ebp,esp</span><br><span class="line">mov eax,[arg.1]</span><br><span class="line">push eax </span><br><span class="line">mov ecx,[arg.1]</span><br><span class="line">mov edx,dword ptr ds:[ecx*4+0x4C52F0]</span><br><span class="line">push edx</span><br><span class="line">mov ecx,飘零网络.004E1DF8</span><br><span class="line">call 飘零网络.00432B30</span><br><span class="line">pop ebp</span><br><span class="line">retn</span><br></pre></td></tr></table></figure></p>
+<p>这里就是易语言的下标，直接段首处<code>retn</code>掉即可。</p>
+<h3 id="问题五：退出暗桩解决"><a href="#问题五：退出暗桩解决" class="headerlink" title="问题五：退出暗桩解决"></a>问题五：退出暗桩解决</h3><p>&#160; &#160; &#160; &#160;其实很多程序都存在退出暗桩问题，同样的，易语言的退出暗桩也要经过问题四中的那几个<code>jmp</code>，一个个跟进去找，找到退出暗桩的段首也是<code>retn</code>掉即可，如图所示：<br><a href="https://imgchr.com/i/iJlf8f" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJlf8f.png" alt="iJlf8f.png"></a><br>&#160; &#160; &#160; &#160;如上图所示代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">push ebp</span><br><span class="line">mov ebp,esp</span><br><span class="line">mov eax,[arg.1]</span><br><span class="line">push eax</span><br><span class="line">mov ecx,飘零网络.004E1DF8</span><br><span class="line">call 飘零网络.00433320</span><br><span class="line">mov ecx,[arg.1]</span><br><span class="line">push ecx</span><br><span class="line">call dword ptr ds:[&lt;&amp;KERNEL32.ExitProces&gt;]</span><br><span class="line">pop ebp</span><br><span class="line">retn</span><br></pre></td></tr></table></figure></p>
+<p>可以从上图中看见在<code>call</code>后面有一个<code>Exitprocess</code>这就是退出暗桩，段首直接<code>retn</code>掉就行了。如果还是遇见退出，那就直接把这些跳转到退出的call给nop掉，下面的条件跳转直接jmp跳过就行了，如图所示：<br><a href="https://imgchr.com/i/iJGCZQ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGCZQ.png" alt="iJGCZQ.png"></a><br><a href="https://imgchr.com/i/iJGGz6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGGz6.png" alt="iJGGz6.png"></a><br><a href="https://imgchr.com/i/iJGYQK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGYQK.png" alt="iJGYQK.png"></a><br><a href="https://imgchr.com/i/iJGNLD" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGNLD.png" alt="iJGNLD.png"></a></p>
+<h3 id="问题六：易语言体读取解决"><a href="#问题六：易语言体读取解决" class="headerlink" title="问题六：易语言体读取解决"></a>问题六：易语言体读取解决</h3><p>&#160; &#160; &#160; &#160;易语言体读取就是在程序运行到某一处后，它会读取一下易语言体是否存在，不存在直接就结束了，所以需要把这个读取易语言体的call直接nop掉，如图所示：<br><a href="https://imgchr.com/i/iJ8ZHH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJ8ZHH.png" alt="iJ8ZHH.png"></a><br><a href="https://imgchr.com/i/iJ8GDg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJ8GDg.png" alt="iJ8GDg.png"></a></p>
+<h3 id="问题七：出错解决"><a href="#问题七：出错解决" class="headerlink" title="问题七：出错解决"></a>问题七：出错解决</h3><p>&#160; &#160; &#160; &#160;有些时候，也不一定是调用的退出，而是出错调用，直接导致程序出错从而停止运行，直接nop掉出错调用函数，如图所示：<br><a href="https://imgchr.com/i/iJGTS0" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGTS0.png" alt="iJGTS0.png"></a><br><a href="https://imgchr.com/i/iJGXTJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGXTJ.png" alt="iJGXTJ.png"></a></p>
+<h3 id="问题八：非法字符解决"><a href="#问题八：非法字符解决" class="headerlink" title="问题八：非法字符解决"></a>问题八：非法字符解决</h3><p>&#160; &#160; &#160; &#160;其实不仅仅只是飘零才有非法字符提示，VMP的壳也有，这里可以也可以直接给它nop掉，不让这个<code>call</code>读取就行了，如图所示：<br><a href="https://imgchr.com/i/iJGzf1" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJGzf1.png" alt="iJGzf1.png"></a><br><a href="https://imgchr.com/i/iJJATH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJJATH.png" alt="iJJATH.png"></a></p>
+<h3 id="问题九：绑定跳过"><a href="#问题九：绑定跳过" class="headerlink" title="问题九：绑定跳过"></a>问题九：绑定跳过</h3><p>&#160; &#160; &#160; &#160;飘零的特性，喜欢绑定机器或者QQ，直接跳过绑定认证即可，同时，在这个绑定下面就是登陆成功，前面有一个大跳转，直接跳过绑定和登陆成功，需要把这个大跳转干掉，不让它跳转，如图所示：<br><a href="https://imgchr.com/i/iJJoAH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJJoAH.png" alt="iJJoAH.png"></a><br><a href="https://imgchr.com/i/iJJ74A" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJJ74A.png" alt="iJJ74A.png"></a><br>&#160; &#160; &#160; &#160;如上图所示就是跳过登陆成功的<code>jnz</code>判断，直接nop掉，下面继续干掉绑定，如图所示：<br><a href="https://imgchr.com/i/iJJRc6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJJRc6.png" alt="iJJRc6.png"></a><br><a href="https://imgchr.com/i/iJJhnO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJJhnO.png" alt="iJJhnO.png"></a></p>
+<h3 id="问题十：登陆成功后的判断"><a href="#问题十：登陆成功后的判断" class="headerlink" title="问题十：登陆成功后的判断"></a>问题十：登陆成功后的判断</h3><p>&#160; &#160; &#160; &#160;飘零网络认证在登录成功以后还有一个判断，就是源码里面的登录成功函数，里面写了很多判断，如图所示：<br><a href="https://imgchr.com/i/iJYU5d" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJYU5d.png" alt="iJYU5d.png"></a><br><a href="https://imgchr.com/i/iJY02t" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJY02t.png" alt="iJY02t.png"></a><br>如上图所示，这就是登录成功后调用登录成功函数，里面还有一次判断，所以需要给它干掉，然后有个记次循环判断，需要给它直接jmp掉，然后最后还有几个出错暗桩，直接全部给它nop掉，就像前面出错问题哪儿一样的，如图所示：<br><a href="https://imgchr.com/i/iJYcVg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJYcVg.png" alt="iJYcVg.png"></a><br><a href="https://imgchr.com/i/iJYfGn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJYfGn.png" alt="iJYfGn.png"></a><br><a href="https://imgchr.com/i/iJYXGR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/10/08/iJYXGR.png" alt="iJYXGR.png"></a><br>如上第三幅图所示，全是ebx的出错暗桩，给它全部nop掉即可。到这里所有的问题解决掉就可以成功破解了。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>&#160; &#160; &#160; &#160;飘零网络认证一定要注意，特别是上面的这些问题中的问题四和问题六，本人亲自遇见过多次，一定要搞掉，不然坑太大了，这不仅仅是飘零有，我遇见过得易语言的软件都有这两个东西，必须要干掉。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/25/VMP3-12过虚拟机检测/" rel="next" title="VMP3.12过虚拟机检测">
+                <i class="fa fa-chevron-left"></i> VMP3.12过虚拟机检测
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/08/个人工作经验及项目管理简述/" rel="prev" title="个人工作经验及项目管理简述">
+                个人工作经验及项目管理简述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">修心</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#飘零2-8概述"><span class="nav-number">1.</span> <span class="nav-text">飘零2.8概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#飘零2-8破解问题汇总"><span class="nav-number">2.</span> <span class="nav-text">飘零2.8破解问题汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题一：时钟特征"><span class="nav-number">2.1.</span> <span class="nav-text">问题一：时钟特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题二：去掉账号密码为空检测"><span class="nav-number">2.2.</span> <span class="nav-text">问题二：去掉账号密码为空检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题三：程序跑丢找回"><span class="nav-number">2.3.</span> <span class="nav-text">问题三：程序跑丢找回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题四：易语言下标错误"><span class="nav-number">2.4.</span> <span class="nav-text">问题四：易语言下标错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题五：退出暗桩解决"><span class="nav-number">2.5.</span> <span class="nav-text">问题五：退出暗桩解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题六：易语言体读取解决"><span class="nav-number">2.6.</span> <span class="nav-text">问题六：易语言体读取解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题七：出错解决"><span class="nav-number">2.7.</span> <span class="nav-text">问题七：出错解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题八：非法字符解决"><span class="nav-number">2.8.</span> <span class="nav-text">问题八：非法字符解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题九：绑定跳过"><span class="nav-number">2.9.</span> <span class="nav-text">问题九：绑定跳过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题十：登陆成功后的判断"><span class="nav-number">2.10.</span> <span class="nav-text">问题十：登陆成功后的判断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">修心</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--nest动态皮肤代码-start-->
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  <!--nest动态皮肤代码-end-->
+</body>
+</html>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
