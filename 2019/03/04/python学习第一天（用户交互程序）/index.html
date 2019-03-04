@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="python学习第一天（用户交互程序）&amp;#160; &amp;#160; &amp;#160; &amp;#160;好久以前就接触到了python，但是一直没有静下心来学习，最近因为某些特殊需求吧，需要用到爬虫，就慌忙火气的写了一个不太成熟的爬虫小程序，但是写完以后自己才发现太垃圾了，所以决定还是好好的静下心来学习python，同时也准备继续完善自己写的这个爬虫，毕竟是第一次自己独立写出的一个程序！今天是学习python">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习第一天（用户交互程序）">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/python学习第一天（用户交互程序）/index.html">
+<meta property="og:site_name" content="修心的博客">
+<meta property="og:description" content="python学习第一天（用户交互程序）&amp;#160; &amp;#160; &amp;#160; &amp;#160;好久以前就接触到了python，但是一直没有静下心来学习，最近因为某些特殊需求吧，需要用到爬虫，就慌忙火气的写了一个不太成熟的爬虫小程序，但是写完以后自己才发现太垃圾了，所以决定还是好好的静下心来学习python，同时也准备继续完善自己写的这个爬虫，毕竟是第一次自己独立写出的一个程序！今天是学习python">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-04T08:51:47.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python学习第一天（用户交互程序）">
+<meta name="twitter:description" content="python学习第一天（用户交互程序）&amp;#160; &amp;#160; &amp;#160; &amp;#160;好久以前就接触到了python，但是一直没有静下心来学习，最近因为某些特殊需求吧，需要用到爬虫，就慌忙火气的写了一个不太成熟的爬虫小程序，但是写完以后自己才发现太垃圾了，所以决定还是好好的静下心来学习python，同时也准备继续完善自己写的这个爬虫，毕竟是第一次自己独立写出的一个程序！今天是学习python">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/04/python学习第一天（用户交互程序）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python学习第一天（用户交互程序） | 修心的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--GitHub-start-->
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!--GitHub-end-->
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">修心的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/python学习第一天（用户交互程序）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修心">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="修心的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python学习第一天（用户交互程序）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 14:29:26 / 修改时间：16:51:47" itemprop="dateCreated datePublished" datetime="2019-03-04T14:29:26+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/软件开发/" itemprop="url" rel="index"><span itemprop="name">软件开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="python学习第一天（用户交互程序）"><a href="#python学习第一天（用户交互程序）" class="headerlink" title="python学习第一天（用户交互程序）"></a>python学习第一天（用户交互程序）</h2><p>&#160; &#160; &#160; &#160;好久以前就接触到了python，但是一直没有静下心来学习，最近因为某些特殊需求吧，需要用到爬虫，就慌忙火气的写了一个不太成熟的爬虫小程序，但是写完以后自己才发现太垃圾了，所以决定还是好好的静下心来学习python，同时也准备继续完善自己写的这个爬虫，毕竟是第一次自己独立写出的一个程序！今天是学习python的第一天，就接触了一下输入输出，字符转换的一些东西，看了一下教程以后觉得自己有必要记一下，同时也能时刻提醒自己，每天保持学习的习惯！下面就先分享一下我自己写的这个爬虫代码吧，然后的话，就是记录一下自己今天的python学习情况！<br><a id="more"></a></p>
+<h2 id="爬虫代码"><a href="#爬虫代码" class="headerlink" title="爬虫代码"></a>爬虫代码</h2><p>&#160; &#160; &#160; &#160;自写爬虫垃圾代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#调用requests模块和lxml模块</span><br><span class="line">import requests</span><br><span class="line">from lxml import etree</span><br><span class="line">#这个就是request请求的http头信息，包含cookie、referer等等信息</span><br><span class="line">headers = &#123;</span><br><span class="line">    &apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0&apos;,</span><br><span class="line">    &apos;Referer&apos;:&apos;https://www.baidu.com/link?url=MRvdxSZC9aYdnFEWbd9BPJdrjx8YPiTvupfDZbcSYeZG3WMh-geRF6lOw01G2IEAEHmn1pN_hs7c-koUEM7ue_&amp;wd=&amp;eqid=9aad4eff00025aee000000055c7cc915&apos;,</span><br><span class="line">    &apos;cookie&apos;:&apos;&quot;108309&quot;; bid=MTknVW88GDQ; douban-fav-remind=1; _vwo_uuid_v2=D3302DED1407AB93A297C5810BEFD7577|9da98df2d8a8582bf7359f380e616274; gr_user_id=168cab1c-8628-4e85-b695-611a4a68cb3b; __yadk_uid=xvOCcG6Ur5ypKFD5qkZxycUS5vKFYgHp; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1551681820%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DMRvdxSZC9aYdnFEWbd9BPJdrjx8YPiTvupfDZbcSYeZG3WMh-geRF6lOw01G2IEAEHmn1pN_hs7c-koUEM7ue_%26wd%3D%26eqid%3D9aad4eff00025aee000000055c7cc915%22%5D; _pk_id.100001.8cb4=0255d89350d40572.1551366373.3.1551681820.1551537520.; _pk_ses.100001.8cb4=*; __utmt=1; __utma=30149280.1243716012.1551188924.1551537504.1551681825.5; __utmb=30149280.1.10.1551681825; __utmc=30149280; __utmz=30149280.1551681825.5.5.utmcsr=baidu|utmccn=(organic)|utmcmd=organic&apos;</span><br><span class="line">    &#125;</span><br><span class="line">#这下面with open这一段就是打开一个文件，保存数据用的！</span><br><span class="line">with open(&apos;D:/Program Files/软件编程/Python/网页扒取/联系人.txt&apos;,&apos;a&apos;,encoding=&apos;utf-8&apos;) as f:</span><br><span class="line">#这一段代码是写了循环，也就是说看你需要获取数据的页面有多少个就写几个循环,但是这里有个坑需要注意，注意下面这个url里面start=&#123;&#125;这个参数，这个start最开始第一个页面的时候是等于0的，第二页等于25，第三页等于50每次增加25，所以我就直接赋值了一个变量a进去，这样就实现了循环的效果！</span><br><span class="line">    for a in range(4):</span><br><span class="line">        url = &apos;https://www.douban.com/doulist/45004834/?start=&#123;&#125;&amp;sort=time&amp;playable=0&amp;sub_type=&apos;.format(a*25)</span><br><span class="line">        data = requests.get(url,headers=headers).text</span><br><span class="line">		</span><br><span class="line">#这一段开始就是使用lxml模块你面的xpath方法，开始写正则表达式来匹配我们自己所需要的内容了下面的line = html.xpath()里面的就是匹配的规则！</span><br><span class="line">        html = etree.HTML(data)</span><br><span class="line">#这一段就是匹配整本书名，所有整本书都是这个标签，最开始我还给干懵逼了，你说气人不！</span><br><span class="line">        line= html.xpath(&apos;//*[@id=&quot;content&quot;]/div[1]/div[1]&apos;)</span><br><span class="line">#限制扒取速度</span><br><span class="line">        time.sleep(3)</span><br><span class="line">#这里写循环，也就是从上面匹配整本书名的标签中找取对应的书名和评分等等！然后因为我怕取到list为空值的选项，所以写了一个len判断！然后输出保存即可！</span><br><span class="line">        for div in line:</span><br><span class="line">            name = div.xpath(&apos;./div[5]/div/div[2]/div[3]/text()&apos;)</span><br><span class="line">            number = div.xpath(&apos;./div[5]/div/div[2]/div[4]/text()&apos;)</span><br><span class="line">            if len(name):</span><br><span class="line">                print(name[0],number[0])</span><br><span class="line">                f.write(&quot;&#123;&#125; &#123;&#125;\n&quot;.format(name[0], number[0]))</span><br><span class="line"></span><br><span class="line">            else:</span><br><span class="line">                print(&quot;未知电话姓名&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;因为从未写过程序，以前用过的也是易语言写的，撸代码能力不咋地，大佬勿喷，以后尽量改正！</p>
+<h2 id="用户交互程序笔记"><a href="#用户交互程序笔记" class="headerlink" title="用户交互程序笔记"></a>用户交互程序笔记</h2><p>&#160; &#160; &#160; &#160;输入函数input()，举例代码(普通输出)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username = input(&quot;username:&quot;)</span><br><span class="line">password = input(&quot;password:&quot;)</span><br><span class="line">print(username,password)</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;三种格式化输出方式，方式一（字符串拼接输出方式，不建议使用）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Name = input(&quot;name:&quot;)</span><br><span class="line">Age = input(&quot;age:&quot;)</span><br><span class="line">Job = input(&quot;job:&quot;)</span><br><span class="line">Salary = input(&quot;salary:&quot;)</span><br><span class="line"></span><br><span class="line">#下面这些参数不是参数名，是变量名</span><br><span class="line">info = &apos;&apos;&apos;</span><br><span class="line">----------  info of&apos;&apos;&apos;+ Name +&apos;&apos;&apos; ----------</span><br><span class="line">Name:&apos;&apos;&apos; + Name +&apos;&apos;&apos;</span><br><span class="line">Age:&apos;&apos;&apos; + Age + &apos;&apos;&apos;</span><br><span class="line">Job:&apos;&apos;&apos; + Job +&apos;&apos;&apos;</span><br><span class="line">Salary:&apos;&apos;&apos;+ Salary +&apos;&apos;&apos;</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">print(info)</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;方式二（百分号输出方式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">name = input(&quot;name:&quot;)</span><br><span class="line">age = input(&quot;age:&quot;)</span><br><span class="line">job = input(&quot;job:&quot;)</span><br><span class="line">salary = input(&quot;salary:&quot;)</span><br><span class="line"></span><br><span class="line">info = &apos;&apos;&apos;</span><br><span class="line">----------  info of %s----------</span><br><span class="line">Name:%s</span><br><span class="line">Age:%s</span><br><span class="line">Job:%s</span><br><span class="line">Salary:%s</span><br><span class="line">&apos;&apos;&apos;%(name,name,age,job,salary)</span><br><span class="line">print(info)</span><br></pre></td></tr></table></figure></p>
+<p>打印变量数据类型和强制转换数据类型例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">name = input(&quot;name:&quot;)</span><br><span class="line">age = int(input(&quot;age:&quot;))	#强制转换为int类型</span><br><span class="line">print(type(age))			#打印字符串类型</span><br><span class="line">print(type(age),type(str(age))) #强制输出为字符型</span><br><span class="line">job = input(&quot;job:&quot;)</span><br><span class="line">salary = input(&quot;salary:&quot;)</span><br><span class="line"></span><br><span class="line">info = &apos;&apos;&apos;</span><br><span class="line">----------  info of %s----------</span><br><span class="line">Name:%s</span><br><span class="line">Age:%d</span><br><span class="line">Job:%s</span><br><span class="line">Salary:%s</span><br><span class="line">&apos;&apos;&apos;%(name,name,age,job,salary)</span><br><span class="line">print(info)</span><br></pre></td></tr></table></figure></p>
+<p>方式三（format输出方式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">name = input(&quot;name:&quot;)</span><br><span class="line">age = input(&quot;age:&quot;)</span><br><span class="line">job = input(&quot;job:&quot;)</span><br><span class="line">salary = input(&quot;salary:&quot;)</span><br><span class="line"></span><br><span class="line">#下面这些参数不是参数名,也不上面的变量名，而是新定义的变量</span><br><span class="line">info = &apos;&apos;&apos;</span><br><span class="line">----------   info of  &#123;_Name&#125; ----------</span><br><span class="line">Name:&#123;_Name&#125;</span><br><span class="line">Age:&#123;_Age&#125;</span><br><span class="line">Job:&#123;_Job&#125;</span><br><span class="line">Salary:&#123;_Salary&#125;</span><br><span class="line">&apos;&apos;&apos;.format(_Name=name,</span><br><span class="line">           _Age=age,</span><br><span class="line">           _Job=job,</span><br><span class="line">           _Salary=salary)</span><br><span class="line"></span><br><span class="line">print(info)</span><br><span class="line">#或者如下这种输出方式</span><br><span class="line">info2 = &apos;&apos;&apos;</span><br><span class="line">----------   info of  &#123;0&#125; ----------</span><br><span class="line">Name:&#123;0&#125;</span><br><span class="line">Age:&#123;1&#125;</span><br><span class="line">Job:&#123;2&#125;</span><br><span class="line">Salary:&#123;3&#125;</span><br><span class="line">&apos;&apos;&apos;.format(name,age,job,salary)</span><br><span class="line"></span><br><span class="line">print(info2)</span><br></pre></td></tr></table></figure></p>
+<h2 id="字符串说明："><a href="#字符串说明：" class="headerlink" title="字符串说明："></a>字符串说明：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">%% 百分号标记 #就是输出一个%</span><br><span class="line">%c 字符及其ASCII码</span><br><span class="line">%s 字符串</span><br><span class="line">%d 有符号整数(十进制)</span><br><span class="line">%u 无符号整数(十进制)</span><br><span class="line">%o 无符号整数(八进制)</span><br><span class="line">%x 无符号整数(十六进制)</span><br><span class="line">%X 无符号整数(十六进制大写字符)</span><br><span class="line">%e 浮点数字(科学计数法)</span><br><span class="line">%E 浮点数字(科学计数法，用E代替e)</span><br><span class="line">%f 浮点数字(用小数点符号)</span><br><span class="line">%g 浮点数字(根据值的大小采用%e或%f)</span><br><span class="line">%G 浮点数字(类似于%g)</span><br><span class="line">%p 指针(用十六进制打印值的内存地址)</span><br><span class="line">%n 存储输出字符的数量放进参数列表的下一个变量中</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/02/记一次用户名枚举漏洞引发的血案/" rel="next" title="记一次用户名枚举漏洞引发的血案">
+                <i class="fa fa-chevron-left"></i> 记一次用户名枚举漏洞引发的血案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">修心</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python学习第一天（用户交互程序）"><span class="nav-number">1.</span> <span class="nav-text">python学习第一天（用户交互程序）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫代码"><span class="nav-number">2.</span> <span class="nav-text">爬虫代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户交互程序笔记"><span class="nav-number">3.</span> <span class="nav-text">用户交互程序笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串说明："><span class="nav-number">4.</span> <span class="nav-text">字符串说明：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">修心</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--nest动态皮肤代码-start-->
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  <!--nest动态皮肤代码-end-->
+</body>
+</html>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
