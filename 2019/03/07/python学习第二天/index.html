@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="python学习第二天&amp;#160; &amp;#160; &amp;#160; &amp;#160;嗯，虽说是第二天，因为基础差，三天才看了两天的内容，还没看完，只是把第二天的内容学习了以后自己整理出来做了笔记！主要有判断、循环、列表、元组、copy和切片！">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习第二天">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/python学习第二天/index.html">
+<meta property="og:site_name" content="修心的博客">
+<meta property="og:description" content="python学习第二天&amp;#160; &amp;#160; &amp;#160; &amp;#160;嗯，虽说是第二天，因为基础差，三天才看了两天的内容，还没看完，只是把第二天的内容学习了以后自己整理出来做了笔记！主要有判断、循环、列表、元组、copy和切片！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-07T03:26:32.226Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python学习第二天">
+<meta name="twitter:description" content="python学习第二天&amp;#160; &amp;#160; &amp;#160; &amp;#160;嗯，虽说是第二天，因为基础差，三天才看了两天的内容，还没看完，只是把第二天的内容学习了以后自己整理出来做了笔记！主要有判断、循环、列表、元组、copy和切片！">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/07/python学习第二天/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python学习第二天 | 修心的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--GitHub-start-->
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!--GitHub-end-->
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">修心的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/python学习第二天/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修心">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="修心的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python学习第二天
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 10:49:35 / 修改时间：11:26:32" itemprop="dateCreated datePublished" datetime="2019-03-07T10:49:35+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/软件开发/" itemprop="url" rel="index"><span itemprop="name">软件开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="python学习第二天"><a href="#python学习第二天" class="headerlink" title="python学习第二天"></a>python学习第二天</h2><p>&#160; &#160; &#160; &#160;嗯，虽说是第二天，因为基础差，三天才看了两天的内容，还没看完，只是把第二天的内容学习了以后自己整理出来做了笔记！主要有判断、循环、列表、元组、copy和切片！<br><a id="more"></a></p>
+<h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><p>&#160; &#160; &#160; &#160;主要是if….else判断，例子如下：</p>
+<h3 id="单判断"><a href="#单判断" class="headerlink" title="单判断"></a>单判断</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import getpass  #密码加密模块getpass</span><br><span class="line"></span><br><span class="line">_username = &apos;zhangsan&apos;</span><br><span class="line">_password = &apos;123456&apos;</span><br><span class="line">username = input(&quot;username:&quot;)</span><br><span class="line">password = getpass.getpass(&quot;password:&quot;)</span><br><span class="line"></span><br><span class="line">if _username == username and _password == password:</span><br><span class="line">    print(&quot;Welcome user &#123;name&#125; login...&quot;.format(name=username))</span><br><span class="line">else:</span><br><span class="line">    print(&quot;账号或密码错误！&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="多判断"><a href="#多判断" class="headerlink" title="多判断"></a>多判断</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">age = 25</span><br><span class="line">guess_age = int(input(&quot;guess age:&quot;))</span><br><span class="line">if guess_age == age :</span><br><span class="line">    print(&quot;yes,you got it.&quot;)</span><br><span class="line">elif guess_age &gt; age :</span><br><span class="line">    print(&quot;think smaller...&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;think bigger...&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>&#160; &#160; &#160; &#160;循环分为while循环和for循环，各自用法用处不同，举例说明：</p>
+<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">age = 25</span><br><span class="line"></span><br><span class="line">count = 0                                       #计数开始！</span><br><span class="line">while True:                                     #循环开始！</span><br><span class="line">    if count == 3:                              #判断计数！</span><br><span class="line">        break                                   #满足计数以后终止程序！</span><br><span class="line">    guess_age = int(input(&quot;guess age:&quot;))        #用户输入！</span><br><span class="line">    if guess_age == age :                       #判断用户输入！</span><br><span class="line">        print(&quot;yes,you got it.&quot;)</span><br><span class="line">        break                                   #正确输出以后终止程序！</span><br><span class="line">    elif guess_age &gt; age :</span><br><span class="line">        print(&quot;think smaller...&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;think bigger...&quot;)</span><br><span class="line">    count +=1                                   #循环，每次计数加一！</span><br></pre></td></tr></table></figure>
+<h3 id="while循环进阶"><a href="#while循环进阶" class="headerlink" title="while循环进阶"></a>while循环进阶</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">age = 25</span><br><span class="line">count = 0                                       #计数开始！</span><br><span class="line">while count &lt; 3:                                #判断count的值是否小于3，小于3则向下执行，否则终止程序！</span><br><span class="line">    guess_age = int(input(&quot;guess age:&quot;))        #用户输入！</span><br><span class="line">    if guess_age == age :                       #判断用户输入！</span><br><span class="line">        print(&quot;yes,you got it.&quot;)</span><br><span class="line">        break                                   #正确输出以后终止程序！</span><br><span class="line">    elif guess_age &gt; age :</span><br><span class="line">        print(&quot;think smaller...&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;think bigger...&quot;)</span><br><span class="line">    count +=1                                   #循环，每次计数加一！切记这个count要与前面循环开始对齐！</span><br><span class="line">    if count == 3:</span><br><span class="line">        again = input(&quot;是否再来一次？请输入&apos;yes&apos;或者&apos;no&apos;&quot;)</span><br><span class="line">        if again == &apos;yes&apos;:</span><br><span class="line">            count = 0</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;you have tried too many times..fuck off&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">age = 25</span><br><span class="line">for i in range(3):                              #判断count的值是否小于3，小于3则向下执行，否则终止程序！</span><br><span class="line">    guess_age = int(input(&quot;guess age:&quot;))        #用户输入！</span><br><span class="line">    if guess_age == age :                       #判断用户输入！</span><br><span class="line">        print(&quot;yes,you got it.&quot;)</span><br><span class="line">        break                                   #正确输出以后终止程序！</span><br><span class="line">    elif guess_age &gt; age :</span><br><span class="line">        print(&quot;think smaller...&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;think bigger...&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;you have tried too many times..fuck off&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="for循环进阶"><a href="#for循环进阶" class="headerlink" title="for循环进阶"></a>for循环进阶</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i in range(10):</span><br><span class="line">    if i&lt;5:</span><br><span class="line">        print(&quot;loop&quot;,i)</span><br><span class="line">    else:</span><br><span class="line">        continue                 								#continue的意思是跳出本次循环，继续下一次循环，break是结束整个循环！！！</span><br><span class="line">    print(&quot;hehe....&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="简单的列表应用"><a href="#简单的列表应用" class="headerlink" title="简单的列表应用"></a>简单的列表应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">names= [&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,&quot;赵六&quot;]</span><br><span class="line">names.append(&quot;朱七&quot;)                          #追加到最后</span><br><span class="line">names.insert(1,&quot;谭八&quot;)                        #插入到某个位置之后</span><br><span class="line">names.insert(3,&quot;熊九&quot;)                        #加入上一行以后计算位数</span><br><span class="line">names[2] = &quot;囚牛&quot;                             #在原本第一个names的基础上改写</span><br><span class="line">names.remove(&quot;张三&quot;)                         #以下三行均为删除第一个</span><br><span class="line">del names[0]</span><br><span class="line">names.pop(0)</span><br><span class="line">print(names)</span><br><span class="line">print(names.index(&quot;王五&quot;))                    #打印出王五的位置</span><br><span class="line">print(names[names.index(&quot;王五&quot;)])             #根据王五的位置打印出王五</span><br><span class="line">print(names.count(&quot;王五&quot;))                    #统计王五的个数</span><br><span class="line">names.clear()                                 #清空</span><br><span class="line">names.reverse()                               #反转</span><br><span class="line">names.sort()</span><br></pre></td></tr></table></figure>
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p>&#160; &#160; &#160; &#160;元组和列表的区别在于元组一旦创建，无法修改，所以元组又叫只读列表,如下例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">names = (&apos;张三&apos;,&apos;李四&apos;)</span><br><span class="line">names.append(&apos;王五&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;如上操作元组会直接报错</p>
+<h2 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h2><p>&#160; &#160; &#160; &#160;copy分为浅copy和深copy,具体例子如下：</p>
+<h3 id="浅copy"><a href="#浅copy" class="headerlink" title="浅copy"></a>浅copy</h3><p>例子一（简单的浅copy）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">names = [&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,[&quot;朱七&quot;,&quot;熊八&quot;],&quot;赵六&quot;]</span><br><span class="line">name2 = names.copy()</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br><span class="line">#把names中的内容copy一份到name2，再修改names列表中的李四一项为拼音</span><br><span class="line">names[1] = &quot;lisi&quot;</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br></pre></td></tr></table></figure></p>
+<p>例子二（浅copy理解）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">names = [&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,[&quot;朱七&quot;,&quot;熊八&quot;],&quot;赵六&quot;]</span><br><span class="line">name2 = names.copy()</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br><span class="line">#把names中的内容copy一份到name2，再修改names列表中的李四一项为拼音</span><br><span class="line">names[1] = &quot;lisi&quot;</span><br><span class="line">#下面一段话是改变names列表里面子列表中的第一个数据，所以在浅copy的时候，只是copy了第一层的数据，但是对于子列表即第二层的数据是无法copy的，也可以理解为第二层的数据其实是在names列表第三个数据这里存了一个内存地址，在修改第二层数据的时候，实际上是修改第三个数据所在地址里面的内容。所以导致了修改子列表中的内容时直接把names和name2的内容全部修改了！</span><br><span class="line">names[3][0]=&quot;zhuqi&quot;</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br></pre></td></tr></table></figure></p>
+<p>例子三（引用copy模块的浅copy）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import copy</span><br><span class="line">names = [&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,[&quot;朱七&quot;,&quot;熊八&quot;],&quot;赵六&quot;]</span><br><span class="line">#这里的copy.copy(names)和前面的names.copy()是一样的，都是属于浅copy，所以输出一样</span><br><span class="line">name2 = copy.copy(names)</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br><span class="line">#把names中的内容copy一份到name2，再修改names列表中的李四一项为拼音</span><br><span class="line">names[1] = &quot;lisi&quot;</span><br><span class="line">#下面一段话是改变names列表里面子列表中的第一个数据，所以在浅copy的时候，只是copy了第一层的数据，但是对于子列表即第二层的数据是无法copy的，也可以理解为第二层的数据其实是在names列表第三个数据这里存了一个内存地址，在修改第二层数据的时候，实际上是修改第三个数据所在地址里面的内容。所以导致了修改子列表中的内容时直接把names和name2的内容全部修改了！</span><br><span class="line">names[3][0]=&quot;zhuqi&quot;</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br></pre></td></tr></table></figure></p>
+<h3 id="深copy"><a href="#深copy" class="headerlink" title="深copy"></a>深copy</h3><p>&#160; &#160; &#160; &#160;深copy需要引用copy模块才能够做到，如下例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import copy</span><br><span class="line">names = [&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,[&quot;朱七&quot;,&quot;熊八&quot;],&quot;赵六&quot;]</span><br><span class="line">#这里的copy.deepcopy(names)就表示深copy，即把names中的所有内容包括第二层的数据完全copy到name2</span><br><span class="line">name2 = copy.deepcopy(names)</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br><span class="line">#把names中的内容copy一份到name2，再修改names列表中的李四一项为拼音</span><br><span class="line">names[1] = &quot;lisi&quot;</span><br><span class="line">#下面一段话是改变names列表里面子列表中的第一个数据，所以在浅copy的时候，只是copy了第一层的数据，但是对于子列表即第二层的数据是无法copy的，也可以理解为第二层的数据其实是在names列表第三个数据这里存了一个内存地址，在修改第二层数据的时候，实际上是修改第三个数据所在地址里面的内容。所以导致了修改子列表中的内容时直接把names和name2的内容全部修改了！</span><br><span class="line">names[3][0]=&quot;zhuqi&quot;</span><br><span class="line">print(names)</span><br><span class="line">print(name2)</span><br></pre></td></tr></table></figure></p>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><p>&#160; &#160; &#160; &#160;所谓的切片，其实就是把列表里面的内容按照需求切片打印出来，获得想要的结果，如下例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">names = [&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,[&quot;朱七&quot;,&quot;熊八&quot;],&quot;赵六&quot;]</span><br><span class="line">print(names[0:-1:2])    #每隔一行打印一个</span><br><span class="line">print(names[::2])       #也是每隔一行打印一个</span><br><span class="line">print(names[:])         #完全切片</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/python学习第一天（用户交互程序）/" rel="next" title="python学习第一天（用户交互程序）">
+                <i class="fa fa-chevron-left"></i> python学习第一天（用户交互程序）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">修心</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python学习第二天"><span class="nav-number">1.</span> <span class="nav-text">python学习第二天</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断"><span class="nav-number">2.</span> <span class="nav-text">判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单判断"><span class="nav-number">2.1.</span> <span class="nav-text">单判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多判断"><span class="nav-number">2.2.</span> <span class="nav-text">多判断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">3.</span> <span class="nav-text">循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#while循环"><span class="nav-number">3.1.</span> <span class="nav-text">while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while循环进阶"><span class="nav-number">3.2.</span> <span class="nav-text">while循环进阶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">3.3.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环进阶"><span class="nav-number">3.4.</span> <span class="nav-text">for循环进阶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">4.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的列表应用"><span class="nav-number">4.1.</span> <span class="nav-text">简单的列表应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组"><span class="nav-number">5.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#copy"><span class="nav-number">6.</span> <span class="nav-text">copy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅copy"><span class="nav-number">6.1.</span> <span class="nav-text">浅copy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深copy"><span class="nav-number">6.2.</span> <span class="nav-text">深copy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切片"><span class="nav-number">7.</span> <span class="nav-text">切片</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">修心</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--nest动态皮肤代码-start-->
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  <!--nest动态皮肤代码-end-->
+</body>
+</html>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
